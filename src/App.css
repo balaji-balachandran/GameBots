@@ -1,0 +1,44 @@
+body{
+  margin: 0;  
+  background-color: #242424;
+
+}
+
+
+.board{
+  --board-width: 95vh;
+  aspect-ratio: 1 / 1;
+  position: relative;
+  width: var(--board-width);
+  background-color: black;
+  left: calc((100vw - var(--board-width)) / 2);
+  top: calc((100vh - var(--board-width)) / 2);
+  display: flex;
+  flex-wrap: wrap;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.board-square-even, .board-square-odd{
+  aspect-ratio: 1 / 1;
+  width: 12.5%;
+}
+
+.board-square-odd {
+  background-color: rgb(242, 178, 89);
+}
+
+.board-square-even {
+  background-color: rgb(68, 66, 34);
+}
+
+.circle{
+  --circle-width: 9%;
+  --border-size: 3px;
+  width: var(--circle-width);
+  margin: calc(((12.5% - var(--circle-width))/2) - var(--border-size));
+  aspect-ratio: 1 / 1;
+  background-color: blue;
+  border: var(--border-size) solid black;
+  border-radius: 100%;
+  position: absolute;
+}
