@@ -24,11 +24,11 @@ body{
 }
 
 .board-square-odd {
-  background-color: rgb(242, 178, 89);
+  background-color: rgb(68, 66, 34);
 }
 
 .board-square-even {
-  background-color: rgb(68, 66, 34);
+  background-color: rgb(242, 178, 89);
 }
 
 .circle{
@@ -41,4 +41,29 @@ body{
   border: var(--border-size) solid black;
   border-radius: 100%;
   position: absolute;
+}
+
+.chess-piece {
+    position: absolute;
+
+}
+
+.light-pawn {
+
+}
+
+.light-knight{
+
+}
+
+.light-rook{
+
+}
+
+.light-bishop{
+
+}
+
+.light-queen{
+  
 }

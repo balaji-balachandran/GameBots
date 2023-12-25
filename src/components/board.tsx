@@ -1,60 +1,62 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 interface MyComponentProps {
   length: number;
+  pieces: String[];
+  piecePositions: [number, number][];
+
 }
 
-const MyComponent: React.FC<MyComponentProps> = (props) => {
-    // const divElements = Array.from({ length }, (_, index) => (
-    //     <div key={index} className="board-square">{index + 1}</div>
-    // ));
-    
-    const divElements = []
-    
-    function MoveCircle(){
-        let circle = document.getElementById('first')
+function PlacePiece(){
+ 
+}
 
-        let iIn = prompt("X-position", '0');
-        var jIn = prompt("Y-position", '0');
-        var i : number = 0;
-        var j : number = 0;
-        if(iIn && jIn){
-            i = parseInt(iIn);
-            j = parseInt(jIn);
+const Board: React.FC<MyComponentProps> = (props) => {
+    const [Board, setBoard] = useState(()=> {
+        const Board: String[][] = [];
+        for (let i = 0; i < props.length; i++) {
+            Board[i] = new Array<String>(props.length).fill("");
         }
-        let xTranslate = 12.5 * i;
-        let yTranslate = 12.5 * j;
-        if(circle){
-            circle.style.left = `${xTranslate}%`;
-            circle.style.top = `${yTranslate}%`;
+        
+        for(let i = 0; i < props.piecePositions.length; i++){
+            const position = props.piecePositions[i];
+            var piece = props.pieces[i].split("/").pop()?.split(".")[0];
+            if(piece){
+                Board[position[0]][position[1]] = piece;
+            }
         }
-    }
 
+        return Board; 
+    })
+
+
+    console.log(Board)
+    const boardSquares = []
+    const pieces = []
+    
+    pieces.push(<div key='1' className=''></div>)
     for(let i = 0; i < props.length; i++){
         // const row = []
         for(let j = 0; j < props.length; j++){
             if((i + j) % 2 == 0){
-                divElements.push(<div key={i * props.length + j} className="board-square-even"></div>)
+                boardSquares.push(<div key={i * props.length + j} className="board-square-even"></div>)
             }
             else{
-                divElements.push(<div key={i * props.length + j} className="board-square-odd"></div>)
-            }
-            
+                boardSquares.push(<div key={i * props.length + j} className="board-square-odd"></div>)
+            }   
         }
-        // divElements.push(row)
     }
+    console.log(props.piecePositions)
 
 
   return (
     <>
         <div className="board">
-        
-        {divElements}
-        <div className='circle' id={`${props.length}`} onMouseOver={MoveCircle}></div>
+        {boardSquares}
+        {pieces}   
         </div>
-        <button onClick={MoveCircle}>Hello</button>
     </>
   );
 };
 
-export default MyComponent;
+export default Board;
