@@ -1,61 +1,49 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 interface MyComponentProps {
   length: number;
-  pieces: String[];
+  pieces: string[];
   piecePositions: [number, number][];
-
-}
-
-function PlacePiece(){
- 
+  onInteract: (userSelected: number) => void
 }
 
 const Board: React.FC<MyComponentProps> = (props) => {
-    const [Board, setBoard] = useState(()=> {
-        const Board: String[][] = [];
-        for (let i = 0; i < props.length; i++) {
-            Board[i] = new Array<String>(props.length).fill("");
-        }
-        
-        for(let i = 0; i < props.piecePositions.length; i++){
-            const position = props.piecePositions[i];
-            var piece = props.pieces[i].split("/").pop()?.split(".")[0];
+
+    // Place pieces
+    useEffect(() => {
+        for(let i = 0; i < props.pieces.length; i++){
+            const piece = document.getElementById(`${i}`)
+            const position = props.piecePositions[i]
             if(piece){
-                Board[position[0]][position[1]] = piece;
+                piece.style.top = `${12.5 * position[0]}%`;
+                piece.style.left = `${12.5 * position[1]}%`;
             }
-        }
-
-        return Board; 
-    })
-
-
-    console.log(Board)
-    const boardSquares = []
-    const pieces = []
+        };
+      }, [props.piecePositions]);
     
-    pieces.push(<div key='1' className=''></div>)
+
+
+    const boardSquares = []
+    
     for(let i = 0; i < props.length; i++){
-        // const row = []
         for(let j = 0; j < props.length; j++){
             if((i + j) % 2 == 0){
-                boardSquares.push(<div key={i * props.length + j} className="board-square-even"></div>)
+                boardSquares.push(<div key={1000 + i * props.length + j} className="board-square-even" onClick={()=>{props.onInteract(1000 + i * props.length + j)}}></div>)
+                
             }
             else{
-                boardSquares.push(<div key={i * props.length + j} className="board-square-odd"></div>)
+                boardSquares.push(<div key={1000 + i * props.length + j} className="board-square-odd" onClick={()=>{props.onInteract(1000 + i * props.length + j)}}></div>)
             }   
         }
     }
-    console.log(props.piecePositions)
-
 
   return (
-    <>
-        <div className="board">
+    <div className="board">
         {boardSquares}
-        {pieces}   
-        </div>
-    </>
+        {props.pieces.map((image, index) => (
+            <img key={index} className="chess-piece" id={`${index}`} src={image} onClick={()=>{props.onInteract(index);}}/>
+        ))}
+    </div>
   );
 };
 

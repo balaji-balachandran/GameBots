@@ -4,7 +4,6 @@ body{
 
 }
 
-
 .board{
   --board-width: 95vh;
   aspect-ratio: 1 / 1;
@@ -31,39 +30,9 @@ body{
   background-color: rgb(242, 178, 89);
 }
 
-.circle{
-  --circle-width: 9%;
-  --border-size: 3px;
-  width: var(--circle-width);
-  margin: calc(((12.5% - var(--circle-width))/2) - var(--border-size));
-  aspect-ratio: 1 / 1;
-  background-color: blue;
-  border: var(--border-size) solid black;
-  border-radius: 100%;
-  position: absolute;
-}
-
 .chess-piece {
+    --move-speed: 100ms;
     position: absolute;
-
-}
-
-.light-pawn {
-
-}
-
-.light-knight{
-
-}
-
-.light-rook{
-
-}
-
-.light-bishop{
-
-}
-
-.light-queen{
-  
+    width: 12.5%;
+    transition: left var(--move-speed), top var(--move-speed);
 }
