@@ -15,7 +15,11 @@ import darkQueen from './../assets/sprites/DarkQueen.webp'
 import darkKing from './../assets/sprites/DarkKing.webp'
 import { useEffect, useState } from 'react'
 
+const initialBoard = Array.from({ length: 8 }, () => Array(8).fill(-1));
+
 export default () =>{
+    const [board, setBoard] = useState(initialBoard);
+
     const BOARD_SIZE = 8;
     var pieces : string[] = []
     // Insert Dark Pieces 
