@@ -15,8 +15,17 @@ import darkQueen from './../assets/sprites/DarkQueen.webp'
 import darkKing from './../assets/sprites/DarkKing.webp'
 import { useEffect, useState } from 'react'
 
-const initialBoard = Array.from({ length: 8 }, () => Array(8).fill(-1));
-
+const initialBoard = [
+    [ 3,  5,  7,  9, 11,  7,  5,  3],
+    [ 1,  1,  1,  1,  1,  1,  1,  1],
+    [-1, -1, -1, -1, -1, -1, -1, -1],
+    [-1, -1, -1, -1, -1, -1, -1, -1],
+    [-1, -1, -1, -1, -1, -1, -1, -1],
+    [-1, -1, -1, -1, -1, -1, -1, -1],
+    [ 2,  2,  2,  2,  2,  2,  2,  2],
+    [ 4,  6,  8, 10, 12,  8,  6,  4],
+  ]; 
+  
 export default () =>{
     const [board, setBoard] = useState(initialBoard);
 
