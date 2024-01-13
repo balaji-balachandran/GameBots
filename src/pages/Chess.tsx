@@ -98,13 +98,12 @@ export default () =>{
         setLastSelected(selected);
         setSelected(userSelected);
 
-        // Invalid Move case
-        
-        // Valid Move case
-        
-
     };
 
+    const generateMoves = (pieceIndex : number) => {
+        
+        return 1;
+    }
     
     return <Board length={BOARD_SIZE} pieces={pieces} piecePositions={piecePositions} onInteract = {onInteract}>
         
